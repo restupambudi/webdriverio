@@ -31,8 +31,12 @@ public class FormTest extends BaseTest {
                 AppiumBy.accessibilityId("text-input")));
         inputField.sendKeys("forms1@99.co");
 
-        WebElement dropdown = wait.until(ExpectedConditions.presenceOfElementLocated(
-                By.xpath("//android.widget.TextView[@text='\uF140']")));
+        WebElement switchButton = wait.until(ExpectedConditions.presenceOfElementLocated(
+                AppiumBy.accessibilityId("switch")));
+        switchButton.click();
+
+        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
+                AppiumBy.accessibilityId("Dropdown")));
         dropdown.click();
 
         WebElement dropdownOption = wait.until(ExpectedConditions.presenceOfElementLocated(
@@ -42,8 +46,16 @@ public class FormTest extends BaseTest {
 
         WebElement activeButton = wait.until(ExpectedConditions.presenceOfElementLocated(
                 By.xpath("//android.view.ViewGroup[@content-desc=\"button-Active\"]/android.view.ViewGroup")));
-        // Verify if the button is enabled
-        boolean isEnabled = activeButton.isEnabled();
+        activeButton.click();
+
+        boolean isMessagePresent;
+        try {
+            WebElement messageElement = wait.until(ExpectedConditions.presenceOfElementLocated(
+                    AppiumBy.id("android:id/message")));
+            isMessagePresent = messageElement.isDisplayed();
+        } catch (Exception e) {
+            isMessagePresent = false;
+        }
     }
 
     @Test
@@ -62,12 +74,8 @@ public class FormTest extends BaseTest {
                 AppiumBy.accessibilityId("text-input")));
         inputField.sendKeys("Form2@99.co");
 
-        WebElement switchButton = wait.until(ExpectedConditions.presenceOfElementLocated(
-                AppiumBy.accessibilityId("switch")));
-        switchButton.click();
-
-        WebElement dropdown = wait.until(ExpectedConditions.presenceOfElementLocated(
-                By.xpath("//android.widget.TextView[@text='\uF140']")));
+        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
+                AppiumBy.accessibilityId("Dropdown")));
         dropdown.click();
 
         WebElement dropdownOption = wait.until(ExpectedConditions.presenceOfElementLocated(
@@ -77,8 +85,16 @@ public class FormTest extends BaseTest {
 
         WebElement activeButton = wait.until(ExpectedConditions.presenceOfElementLocated(
                 By.xpath("//android.view.ViewGroup[@content-desc=\"button-Active\"]/android.view.ViewGroup")));
-        // Verify if the button is enabled
-        boolean isEnabled = activeButton.isEnabled();
+        activeButton.click();
+
+        boolean isMessagePresent;
+        try {
+            WebElement messageElement = wait.until(ExpectedConditions.presenceOfElementLocated(
+                    AppiumBy.id("android:id/message")));
+            isMessagePresent = messageElement.isDisplayed();
+        } catch (Exception e) {
+            isMessagePresent = false;
+        }
     }
 
     @Test
@@ -97,8 +113,12 @@ public class FormTest extends BaseTest {
                 AppiumBy.accessibilityId("text-input")));
         inputField.sendKeys("f0rm3@99.co");
 
-        WebElement dropdown = wait.until(ExpectedConditions.presenceOfElementLocated(
-                By.xpath("//android.widget.TextView[@text='\uF140']")));
+        WebElement switchButton = wait.until(ExpectedConditions.presenceOfElementLocated(
+                AppiumBy.accessibilityId("switch")));
+        switchButton.click();
+
+        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
+                AppiumBy.accessibilityId("Dropdown")));
         dropdown.click();
 
         WebElement dropdownOption = wait.until(ExpectedConditions.presenceOfElementLocated(
@@ -109,7 +129,7 @@ public class FormTest extends BaseTest {
         WebElement inactiveButton = wait.until(ExpectedConditions.presenceOfElementLocated(
                 By.xpath("//android.view.ViewGroup[@content-desc=\"button-Inactive\"]/android.view.ViewGroup")));
         // Verify if the button is enabled
-        boolean isEnabled = inactiveButton.isEnabled();
+        boolean isDisabled = !inactiveButton.isEnabled();
     }
 
     @AfterEach
